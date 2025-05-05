@@ -1,4 +1,7 @@
 describe('Hardcoded assertion bad practice', () => {
+
+  const { hits } = require('../../fixtures/stories')
+
   beforeEach(() => {
     cy.intercept(
       'GET',
@@ -11,19 +14,16 @@ describe('Hardcoded assertion bad practice', () => {
   })
 
   it('searches', () => {
-    cy.fixture('stories')
-      .then(({ hits }) => {
-        cy.search('cypress.io')
-        cy.wait('@getStories')
+    cy.search('cypress.io')
+    cy.wait('@getStories')
 
-        cy.get('.table-row')
-          .as('tableRows')
-          .should('have.length', hits.length)
-        hits.forEach((hit, index) => {
-          cy.get('@tableRows')
-            .eq(index)
-            .should('contain', hit.title)
-        })
-      })
+    cy.get('.table-row')
+      .as('tableRows')
+      .should('have.length', hits.length)
+    hits.forEach((hit, index) => {
+      cy.get('@tableRows')
+        .eq(index)
+        .should('contain', hit.title)
+    })
   })
 })

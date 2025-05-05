@@ -7,11 +7,9 @@ describe.only('Flaky tests bad practice', () => {
       'GET',
       '**/search**',
       { fixture: 'stories' }
-    ).as('getStories')
+    )
 
     cy.visit('https://wlsf82-hacker-stories.web.app')
-
-    cy.wait('@getStories')
 
   })
 
@@ -20,8 +18,6 @@ describe.only('Flaky tests bad practice', () => {
       Cypress._.times(6, () => {
         cy.search(faker.random.word())
       })
-
-      cy.wait('@getStories')
 
       cy.get('.last-searches button')
         .should('have.length', 5)

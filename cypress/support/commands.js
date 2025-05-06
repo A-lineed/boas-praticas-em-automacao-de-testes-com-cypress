@@ -5,12 +5,6 @@ Cypress.Commands.add('search', term => {
     .type(`${term}{enter}`)
 })
 
-Cypress.Commands.add('assertResults', () => {
-  cy.get('.table-row').then(rows => {
-    expect(rows.length).to.be.at.least(1)
-  })
-})
-
 Cypress.Commands.add('randomlyTogglePurchaseAgreement', () => {
   if (Math.random() > 0.5) {
     cy.get('#agree')
@@ -18,7 +12,7 @@ Cypress.Commands.add('randomlyTogglePurchaseAgreement', () => {
   }
 })
 
-Cypress.Commands.add('updateDestination', data => { 
+Cypress.Commands.add('updateDestination', data => {
   cy.get('#destination_name')
     .clear()
     .type(data.name)

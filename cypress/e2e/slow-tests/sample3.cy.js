@@ -9,7 +9,7 @@ describe('Unnecessary waiting bad practice', () => {
       .click()
       .blur()
 
-    cy.contains('h2', 'Ramen (sopa)', {timeout: 1000})
+    cy.contains('h2', 'Ramen (sopa)', {timeout: 10000})
       .should('be.visible')
   })
 })
